@@ -1,6 +1,6 @@
 {
   "name": "passport-renren",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "GitHub authentication strategy for Passport.",
   "keywords": ["passport", "renren", "auth", "authn", "authentication", "identity"],
   "repository": {
