@@ -1,6 +1,8 @@
 # Passport-Renren
 
-copied and revised from passport-github
+* Updated endpoints to use V2 of RenRen API / Updated tests- Eugenio Pace
+
+Copied and revised from passport-github
 
 [Passport](http://passportjs.org/) strategy for authenticating with [Renren](https://renren.com/)
 using the OAuth 2.0 API.
@@ -19,12 +21,12 @@ unobtrusively integrated into any application or framework that supports
 
 #### Configure Strategy
 
-The GitHub authentication strategy authenticates users using a GitHub account
+The RenRen authentication strategy authenticates users using a RenRen account
 and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
 specifying a client ID, client secret, and callback URL.
 
-    passport.use(new GitHubStrategy({
+    passport.use(new RenRenStrategy({
         clientID: RENREN_CLIENT_ID,
         clientSecret: RENREN_CLIENT_SECRET,
         callbackURL: "http://127.0.0.1:3000/auth/renren/callback"
