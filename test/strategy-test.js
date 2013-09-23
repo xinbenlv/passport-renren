@@ -78,13 +78,19 @@ vows.describe('RenrenStrategy').addBatch({
       function() {});
       
       // mock
-      strategy._oauth2._request = function(method, url, headers, post_body, access_token, callback) { 
-        if(url === "https://api.renren.com/restserver.do?access_token=access-token&format=json&method=users.getInfo") {
-          var body = '[{"uid":1,"tinyurl":"http://tinyurl.jpg","vip":1,"sex":1,"name": "octocat","star":1,"headurl":"http://headurl.jpg","zidou":0}]';
-          callback(null, body, undefined);
-        } else {
-          callback(new Error('Incorrect user profile URL'));
+      strategy._oauth2.get = function(url, access_token, callback) { 
+
+        var body = '{ "response":{"id":1,"name":"the name"} }';
+
+        if(url === "https://api.renren.com/v2/user/login/get") {
+          return callback(null, body, undefined);
+        } 
+      
+        if(url === "https://api.renren.com/v2/user/get?userId=1") {
+          return callback(null, body, undefined);
         }
+
+        return callback(new Error('Incorrect user profile URL'));
       }
       
       return strategy;
@@ -108,11 +114,7 @@ vows.describe('RenrenStrategy').addBatch({
       'should load profile' : function(err, profile) {
         assert.equal(profile.provider, 'renren');
         assert.equal(profile.id, '1');
-        assert.equal(profile.tinyurl, 'http://tinyurl.jpg');
-        assert.equal(profile.displayName, 'octocat');
-        assert.equal(profile.vip, 1);
-        assert.equal(profile.name, 'octocat');
-        assert.equal(profile.star, 1);
+        assert.equal(profile.displayName, 'the name');
       },
       'should set raw property' : function(err, profile) {
         assert.isString(profile._raw);
@@ -132,7 +134,7 @@ vows.describe('RenrenStrategy').addBatch({
       function() {});
       
       // mock
-      strategy._oauth2._request = function(method, url, headers, post_body, access_token, callback) { 
+      strategy._oauth2.get = function(url, access_token, callback) { 
         callback(new Error('something-went-wrong'));
       }
       
