@@ -24,7 +24,7 @@ and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
 specifying a client ID, client secret, and callback URL.
 
-    passport.use(new GitHubStrategy({
+    passport.use(new RenrenStrategy({
         clientID: RENREN_CLIENT_ID,
         clientSecret: RENREN_CLIENT_SECRET,
         callbackURL: "http://127.0.0.1:3000/auth/renren/callback"
