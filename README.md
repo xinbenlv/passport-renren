@@ -5,8 +5,8 @@ copied and revised from passport-github
 [Passport](http://passportjs.org/) strategy for authenticating with [Renren](https://renren.com/)
 using the OAuth 2.0 API.
 
-This module lets you authenticate using GitHub in your Node.js applications.
-By plugging into Passport, GitHub authentication can be easily and
+This module lets you authenticate using Renren in your Node.js applications.
+By plugging into Passport, Renren authentication can be easily and
 unobtrusively integrated into any application or framework that supports
 [Connect](http://www.senchalabs.org/connect/)-style middleware, including
 [Express](http://expressjs.com/).
@@ -19,7 +19,7 @@ unobtrusively integrated into any application or framework that supports
 
 #### Configure Strategy
 
-The GitHub authentication strategy authenticates users using a GitHub account
+The Renren authentication strategy authenticates users using a Renren account
 and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
 specifying a client ID, client secret, and callback URL.

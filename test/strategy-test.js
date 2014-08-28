@@ -79,8 +79,8 @@ vows.describe('RenrenStrategy').addBatch({
       
       // mock
       strategy._oauth2._request = function(method, url, headers, post_body, access_token, callback) { 
-        if(url === "https://api.renren.com/restserver.do?access_token=access-token&format=json&method=users.getInfo") {
-          var body = '[{"uid":1,"tinyurl":"http://tinyurl.jpg","vip":1,"sex":1,"name": "octocat","star":1,"headurl":"http://headurl.jpg","zidou":0}]';
+        if(url === "https://api.renren.com/v2/user/get?access_token=access-token") {
+          var body = '{ "response": {"uid":1,"tinyurl":"http://tinyurl.jpg","vip":1,"sex":1,"name": "octocat","star":1,"headurl":"http://headurl.jpg","zidou":0}}';
           callback(null, body, undefined);
         } else {
           callback(new Error('Incorrect user profile URL'));
@@ -107,10 +107,7 @@ vows.describe('RenrenStrategy').addBatch({
       },
       'should load profile' : function(err, profile) {
         assert.equal(profile.provider, 'renren');
-        assert.equal(profile.id, '1');
-        assert.equal(profile.tinyurl, 'http://tinyurl.jpg');
         assert.equal(profile.displayName, 'octocat');
-        assert.equal(profile.vip, 1);
         assert.equal(profile.name, 'octocat');
         assert.equal(profile.star, 1);
       },
