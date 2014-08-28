@@ -1,7 +1,7 @@
 {
   "name": "passport-renren",
-  "version": "0.1.1",
-  "description": "Renren authentication strategy for Passport.",
+  "version": "0.1.2",
+  "description": "Renren authentication strategy for Passport. Supports API 2.0",
   "keywords": ["passport", "renren", "auth", "authn", "authentication", "identity"],
   "repository": {
     "type": "git",

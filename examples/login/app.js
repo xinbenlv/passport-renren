@@ -3,9 +3,15 @@ var express = require('express')
   , util = require('util')
   , RenrenStrategy = require('passport-renren').Strategy;
 
-var RENREN_CLIENT_ID = "--insert-renren-client-id-here--"
-var RENREN_CLIENT_SECRET = "--insert-renren-client-secret-here--";
+// TODO in your shell, type
+//  $ export CLIENT_ID=<your client id>
+//  $ export CLIENT_SECRET=<your client secret>
+var RENREN_CLIENT_ID = process.env.CLIENT_ID || "--insert-renren-client-id-here--"
+var RENREN_CLIENT_SECRET = process.env.CLIENT_SECRET  || "--insert-renren-client-secret-here--";
 
+// !!! Remember to set it to 127.0.0.1 in your /etc/hosts
+// !!! and remember to set "callback url" in Renren's Dev Console
+var RENREN_CALLBACK_URL = "http://localtest.zzn.im:3000/auth/renren/callback";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -30,7 +36,8 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new RenrenStrategy({
     clientID: RENREN_CLIENT_ID,
     clientSecret: RENREN_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/renren/callback"
+    callbackURL: RENREN_CALLBACK_URL
+
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -109,6 +116,8 @@ app.get('/logout', function(req, res){
 });
 
 app.listen(3000);
+console.log("Using Client Id: " + RENREN_CLIENT_ID);
+console.log("Using Client Secret: " + RENREN_CLIENT_SECRET);
 
 
 // Simple route middleware to ensure user is authenticated.
